@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CsrfEnabledIntegrationTest extends CsrfAbstractIntegrationTest {
 
     @Test
-    public void givenNotAuth_whenAddFoo_thenUnauthorized() throws Exception {
+    public void givenNoValidCredentialsAndValidCsrfTokenShouldNotAuthorize() throws Exception {
         mvc.perform(
             post("/post").contentType(MediaType.APPLICATION_JSON)
                 .content(createContent()).with(csrf())
@@ -27,7 +27,25 @@ public class CsrfEnabledIntegrationTest extends CsrfAbstractIntegrationTest {
     }
 
     @Test
-    public void givenAuth_whenAddFoo_thenCreated() throws Exception {
+    public void givenNoValidCredentialsAndNoValidCsrfTokenShouldForbid() throws Exception {
+        mvc.perform(
+            post("/post").contentType(MediaType.APPLICATION_JSON)
+                .content(createContent())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void givenValidCredentialsButInvalidCsrfTokenShouldForbid() throws Exception {
+        mvc.perform(
+            post("/post").contentType(MediaType.APPLICATION_JSON)
+                .content(createContent())
+                //.with(testUser())
+                .with(httpBasic("login", "pass"))
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void givenBothValidCredentialsAndCsrfTokenShouldBeOk() throws Exception {
         mvc.perform(
             post("/post").contentType(MediaType.APPLICATION_JSON)
                 .content(createContent())

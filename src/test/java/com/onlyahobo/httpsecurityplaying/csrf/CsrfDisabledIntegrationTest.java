@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CsrfDisabledIntegrationTest extends CsrfAbstractIntegrationTest {
 
     @Test
-    public void givenNotAuth_whenAddFoo_thenUnauthorized() throws Exception {
+    public void givenNoValidCredentialsShouldNotAuthorize() throws Exception {
         mvc.perform(
             post("/post").contentType(MediaType.APPLICATION_JSON)
                 .content(createContent())
@@ -26,7 +26,7 @@ public class CsrfDisabledIntegrationTest extends CsrfAbstractIntegrationTest {
     }
 
     @Test
-    public void givenAuth_whenAddFoo_thenCreated() throws Exception {
+    public void givenValidCredentialsShouldAuthorize() throws Exception {
         mvc.perform(
             post("/post").contentType(MediaType.APPLICATION_JSON)
                 .content(createContent())

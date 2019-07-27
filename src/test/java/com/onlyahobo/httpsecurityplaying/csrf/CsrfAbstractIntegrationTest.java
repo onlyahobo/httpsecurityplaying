@@ -13,10 +13,9 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.Filter;
-
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -25,15 +24,12 @@ abstract class CsrfAbstractIntegrationTest {
     @Autowired
     private WebApplicationContext context;
 
-    @Autowired
-    private Filter springSecurityFilterChain;
-
     MockMvc mvc;
 
     @Before
     public void setup() {
         mvc = MockMvcBuilders.webAppContextSetup(context)
-            .addFilters(springSecurityFilterChain)
+            .apply(springSecurity())
             .build();
     }
 
