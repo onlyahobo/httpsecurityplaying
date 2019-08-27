@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-/**
- * Copyright (c) Asseco Business Solutions S.A. All rights reserved.
- */
-
 @RestController
 @Slf4j
 public class CsrfController {

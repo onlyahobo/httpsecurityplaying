@@ -10,10 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-/**
- * Copyright (c) Asseco Business Solutions S.A. All rights reserved.
- */
-
 @Configuration
 public class BasicAuthenticationConfig {
 

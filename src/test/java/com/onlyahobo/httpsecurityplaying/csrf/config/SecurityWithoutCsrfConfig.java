@@ -9,10 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-/**
- * Copyright (c) Asseco Business Solutions S.A. All rights reserved.
- */
-
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityWithoutCsrfConfig extends WebSecurityConfigurerAdapter {

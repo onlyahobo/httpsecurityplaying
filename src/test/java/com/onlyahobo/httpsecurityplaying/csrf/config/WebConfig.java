@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * Copyright (c) Asseco Business Solutions S.A. All rights reserved.
- */
-
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = { BasicAuthenticationConfig.class, CsrfController.class })
